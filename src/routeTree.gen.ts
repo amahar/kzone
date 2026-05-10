@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ScheduleRouteImport } from './routes/schedule'
+import { Route as ReviewsRouteImport } from './routes/reviews'
+import { Route as FreeTrialRouteImport } from './routes/free-trial'
+import { Route as EventsRouteImport } from './routes/events'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CampsRouteImport } from './routes/camps'
+import { Route as AfterSchoolRouteImport } from './routes/after-school'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ScheduleRoute = ScheduleRouteImport.update({
+  id: '/schedule',
+  path: '/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewsRoute = ReviewsRouteImport.update({
+  id: '/reviews',
+  path: '/reviews',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreeTrialRoute = FreeTrialRouteImport.update({
+  id: '/free-trial',
+  path: '/free-trial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EventsRoute = EventsRouteImport.update({
+  id: '/events',
+  path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CampsRoute = CampsRouteImport.update({
+  id: '/camps',
+  path: '/camps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AfterSchoolRoute = AfterSchoolRouteImport.update({
+  id: '/after-school',
+  path: '/after-school',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/after-school': typeof AfterSchoolRoute
+  '/camps': typeof CampsRoute
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
+  '/free-trial': typeof FreeTrialRoute
+  '/reviews': typeof ReviewsRoute
+  '/schedule': typeof ScheduleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/after-school': typeof AfterSchoolRoute
+  '/camps': typeof CampsRoute
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
+  '/free-trial': typeof FreeTrialRoute
+  '/reviews': typeof ReviewsRoute
+  '/schedule': typeof ScheduleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/after-school': typeof AfterSchoolRoute
+  '/camps': typeof CampsRoute
+  '/contact': typeof ContactRoute
+  '/events': typeof EventsRoute
+  '/free-trial': typeof FreeTrialRoute
+  '/reviews': typeof ReviewsRoute
+  '/schedule': typeof ScheduleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/after-school'
+    | '/camps'
+    | '/contact'
+    | '/events'
+    | '/free-trial'
+    | '/reviews'
+    | '/schedule'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/after-school'
+    | '/camps'
+    | '/contact'
+    | '/events'
+    | '/free-trial'
+    | '/reviews'
+    | '/schedule'
+  id:
+    | '__root__'
+    | '/'
+    | '/after-school'
+    | '/camps'
+    | '/contact'
+    | '/events'
+    | '/free-trial'
+    | '/reviews'
+    | '/schedule'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AfterSchoolRoute: typeof AfterSchoolRoute
+  CampsRoute: typeof CampsRoute
+  ContactRoute: typeof ContactRoute
+  EventsRoute: typeof EventsRoute
+  FreeTrialRoute: typeof FreeTrialRoute
+  ReviewsRoute: typeof ReviewsRoute
+  ScheduleRoute: typeof ScheduleRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/schedule': {
+      id: '/schedule'
+      path: '/schedule'
+      fullPath: '/schedule'
+      preLoaderRoute: typeof ScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reviews': {
+      id: '/reviews'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof ReviewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/free-trial': {
+      id: '/free-trial'
+      path: '/free-trial'
+      fullPath: '/free-trial'
+      preLoaderRoute: typeof FreeTrialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/events': {
+      id: '/events'
+      path: '/events'
+      fullPath: '/events'
+      preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/camps': {
+      id: '/camps'
+      path: '/camps'
+      fullPath: '/camps'
+      preLoaderRoute: typeof CampsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/after-school': {
+      id: '/after-school'
+      path: '/after-school'
+      fullPath: '/after-school'
+      preLoaderRoute: typeof AfterSchoolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,17 +197,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AfterSchoolRoute: AfterSchoolRoute,
+  CampsRoute: CampsRoute,
+  ContactRoute: ContactRoute,
+  EventsRoute: EventsRoute,
+  FreeTrialRoute: FreeTrialRoute,
+  ReviewsRoute: ReviewsRoute,
+  ScheduleRoute: ScheduleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
